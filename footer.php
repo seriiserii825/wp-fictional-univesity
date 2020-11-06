@@ -16,7 +16,7 @@
                     <nav class="nav-list">
                         <ul>
                             <li>
-                                <a href="#">About Us</a>
+                                <a href="<?php echo site_url('/about-us');?>">About Us</a>
                             </li>
                             <li>
                                 <a href="#">Programs</a>
@@ -39,7 +39,7 @@
                                 <a href="#">Legal</a>
                             </li>
                             <li>
-                                <a href="#">Privacy</a>
+                                <a href="<?php echo site_url('/privacy-policy');?>">Privacy</a>
                             </li>
                             <li>
                                 <a href="#">Careers</a>
