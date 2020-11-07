@@ -6,46 +6,44 @@
  *
  * @package fictional-univesity
  */
-
 get_header();
 ?>
-
-	<main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo get_template_directory_uri() . '/assets//images/ocean.jpg' ?>);"></div>
+        <div class="page-banner__content container container--narrow">
+            <h1 class="page-banner__title">
+				<?php if ( is_category() ): ?>
+					<?php single_cat_title(); ?>
+				<?php elseif ( is_author() ): ?>
+					<?php the_archive_title(); ?>
+				<?php endif; ?>
+            </h1>
+            <div class="page-banner__intro">
+                <p>Keep up with our news</p>
+            </div>
+        </div>
+    </div>
+    <div class="container container--narrow page-section">
+		<?php
+		if ( have_posts() ) :
 			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
+				the_post(); ?>
+                <div class="post-item">
+                    <h2 class="headline headline--post-title">
+                        <a style="margin-bottom: 20px; display: block;" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    </h2>
+                    <div class="meta-box">Posted by <strong><?php the_author_posts_link(); ?></strong> in
+                        <em style="color: darkcyan;"><?php the_time( 'd-F-Y' ); ?></em> in
+                        <strong><?php echo get_the_category_list( ', ' ); ?></strong></div>
+                    <div class="generic-content" style="margin-bottom: 20px;"><?php the_excerpt(); ?></div>
+                    <p>
+                        <a class="btn btn--blue" href="<?php the_permalink(); ?>">Continue reading</a>
+                    </p>
+                </div>
+			<?php endwhile;
+			echo paginate_links();
 		endif;
 		?>
-
-	</main><!-- #main -->
-
+    </div>
 <?php
-get_sidebar();
 get_footer();

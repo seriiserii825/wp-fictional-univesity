@@ -1510,16 +1510,16 @@ body.admin-bar .search-overlay {
     margin-top: 0;
     margin-bottom: 1rem;
   }
-.generic-content h1 {font-size: 3.6rem}
-.generic-content h2 {font-size: 3.1rem}
-.generic-content h3 {font-size: 2.6rem}
-.generic-content h4 {font-size: 2.1rem}
-.generic-content h5 {font-size: 1.6rem}
-.generic-content h6 {font-size: 1.15rem}
+.generic-content h1 {font-size: 2.6rem}
+.generic-content h2 {font-size: 2.1rem}
+.generic-content h3 {font-size: 1.6rem}
+.generic-content h4 {font-size: 1.1rem}
+.generic-content h5 {font-size: 0.6rem}
+.generic-content h6 {font-size: 0.15rem}
 @media (min-width: 530px) {
-    .generic-content h1 {font-size: 6.25rem}
-    .generic-content h2 {font-size: 5rem}
-    .generic-content h3 {font-size: 3.125rem}
+    .generic-content h1 {font-size: 2.25rem}
+    .generic-content h2 {font-size: 2rem}
+    .generic-content h3 {font-size: 2.125rem}
     .generic-content h4 {font-size: 2.4rem}
     .generic-content h5 {font-size: 1.9rem}
     .generic-content h6 {font-size: 1.15rem}
