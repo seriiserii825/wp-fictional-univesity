@@ -31,13 +31,10 @@ get_header();
                     <h2 class="headline headline--post-title">
                         <a style="margin-bottom: 20px; display: block;" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </h2>
-                    <div class="meta-box">Posted by <strong><?php the_author(); ?></strong> in
+                    <div style="margin-bottom: 40px" class="meta-box">Posted by <strong><?php the_author(); ?></strong> in
                         <em style="color: darkcyan;"><?php the_time( 'd-F-Y' ); ?></em> <span>in</span>
                         <strong><?php echo get_the_category_list( ', ' ); ?></strong></div>
-                    <div class="generic-content" style="margin-bottom: 20px;"><?php the_excerpt(); ?></div>
-                    <p>
-                        <a class="btn btn--blue" href="<?php the_permalink(); ?>">Continue reading </a>
-                    </p>
+                    <div class="generic-content" style="margin-bottom: 20px;"><?php the_content(); ?></div>
                 </div>
 			<?php endwhile;
 			echo paginate_links();
