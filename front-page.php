@@ -15,32 +15,40 @@
     <div class="full-width-split__one">
         <div class="full-width-split__inner">
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
+			<?php $events = new WP_Query( [
+				'posts_per_page' => 2,
+				'post_type'      => 'events'
+			] ); ?>
 
-            <div class="event-summary">
-                <a class="event-summary__date t-center" href="#"> <span class="event-summary__month">Mar</span>
-                    <span class="event-summary__day">25</span> </a>
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny">
-                        <a href="#">Poetry in the 100</a>
-                    </h5>
-                    <p>Bring poems you&rsquo;ve wrote to the 100 building this Tuesday for an open mic and snacks.
-                        <a href="#" class="nu gray">Learn more</a>
-                    </p>
-                </div>
-            </div>
-            <div class="event-summary">
-                <a class="event-summary__date t-center" href="#"> <span class="event-summary__month">Apr</span>
-                    <span class="event-summary__day">02</span> </a>
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny">
-                        <a href="#">Quad Picnic Party</a>
-                    </h5>
-                    <p>Live music, a taco truck and more can found in our third annual quad picnic day.
-                        <a href="#" class="nu gray">Learn more</a>
-                    </p>
-                </div>
-            </div>
-
+			<?php if ( $events->have_posts() ): ?>
+				<?php while ( $events->have_posts() ): ?>
+					<?php $events->the_post(); ?>
+                    <div class="event-summary">
+                        <a class="event-summary__date t-center" href="#">
+                            <span class="event-summary__month">
+                                <?php
+                                $eventDate = new DateTime( get_field( 'event_date' ) );
+                                echo $eventDate->format( 'M' );
+                                ?>
+                            </span> <span class="event-summary__day">
+                                <?php
+                                $eventDay = new DateTime( get_field( 'event_date' ) );
+                                echo $eventDay->format( 'd' );
+                                ?>
+                            </span> </a>
+                        <div class="event-summary__content">
+                            <h5 class="event-summary__title headline headline--tiny">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h5>
+                            <p>
+                                <span><?php the_excerpt(); ?></span>
+                                <a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a>
+                            </p>
+                        </div>
+                    </div>
+				<?php endwhile; ?>
+				<?php wp_reset_postdata(); ?>
+			<?php endif; ?>
             <p class="t-center no-margin">
                 <a href="#" class="btn btn--blue">View All Events</a>
             </p>
@@ -121,4 +129,3 @@
     </div>
 </div>
 <?php get_footer(); ?>
-
