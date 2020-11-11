@@ -11,18 +11,6 @@ get_header();
         </div>
     </div>
     <div class="container container--narrow page-section">
-        <div class="metabox metabox--position-up metabox--with-home-link">
-			<?php
-			$page_blog_id  = 74;
-			$page_blog_url = get_page_link( 74 );
-			?>
-            <p>
-                <a class="metabox__blog-home-link" href="<?php echo $page_blog_url; ?>">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <span>Back to </span><?php echo get_the_title( $page_blog_id ); ?>
-                </a> <span class="metabox__main"><?php the_title(); ?></span>
-            </p>
-        </div>
 		<?php
 		if ( have_posts() ) :
 			while ( have_posts() ) :
