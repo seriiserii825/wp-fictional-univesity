@@ -84,6 +84,6 @@ function my_custom_init() {
 		'hierarchical'       => false,
 		'menu_position'      => null,
 		'menu_icon'          => 'dashicons-welcome-learn-more',
-		'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' )
+		'supports'           => array( 'title', 'thumbnail' )
 	) );
 }

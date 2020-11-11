@@ -19,14 +19,18 @@ get_header();
                     <h2 class="headline headline--post-title">
                         <a style="margin-bottom: 20px; display: block;" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </h2>
-                    <div style="margin-bottom: 40px" class="meta-box">Posted by
-                        <strong><?php the_author(); ?></strong> in
-                        <em style="color: darkcyan;"><?php the_time( 'd-F-Y' ); ?></em> <span>in</span>
-                        <strong><?php echo get_the_category_list( ', ' ); ?></strong></div>
-                    <div class="generic-content" style="margin-bottom: 20px;"><?php the_content(); ?></div>
+                    <div class="generic-content" style="margin-bottom: 20px;">
+                        <div class="row group">
+                            <div class="one-third">
+	                            <?php the_post_thumbnail(); ?>
+                            </div>
+                            <div class="two-thirds">
+	                            <?php the_content(); ?>
+                            </div>
+                        </div>
+                    </div>
 
                     <hr class="section-break">
-
 					<?php $related_programs = get_field( 'related_programs' ); ?>
 					<?php if ( $related_programs ): ?>
                         <h2 class="headline headline--medium">Subjects Taught</h2>
