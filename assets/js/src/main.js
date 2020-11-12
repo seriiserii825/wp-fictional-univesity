@@ -1,3 +1,5 @@
+import search from './modules/search';
+
 document.addEventListener('DOMContentLoaded', function () {
-	alert('ok');
+	search();
 });
