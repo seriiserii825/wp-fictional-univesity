@@ -37,6 +37,30 @@ get_header();
                         <strong><?php echo get_the_category_list( ', ' ); ?></strong></div>
                     <div class="generic-content" style="margin-bottom: 20px;"><?php the_content(); ?></div>
                     <hr class="section-break">
+					<?php $professors = new WP_Query( [
+						'post_type'      => 'professors',
+						'posts_per_page' => - 1,
+						'meta_query'     => [
+							[
+								'key'     => 'related_programs',
+								'compare' => 'LIKE',
+								'value'   => '"' . get_the_ID() . '"'
+							],
+						]
+					] ); ?>
+
+                    <ul>
+						<?php if ( $professors->have_posts() ): ?>
+							<?php while ( $professors->have_posts() ): ?>
+								<?php $professors->the_post(); ?>
+                                <li class="link-list min-list">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                </li>
+							<?php endwhile; ?>
+							<?php wp_reset_postdata(); ?>
+						<?php endif; ?>
+
+                    </ul>
 
 					<?php
 					$today  = date( 'Ymd' );
