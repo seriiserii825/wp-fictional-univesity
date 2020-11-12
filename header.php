@@ -11,8 +11,7 @@
         <h1 class="school-logo-text float-left">
             <a href="<?php echo home_url();?>"><strong>Fictional</strong> University</a>
         </h1>
-        <span class="js-search-trigger site-header__search-trigger">
-            <i class="fa fa-search" aria-hidden="true"></i></span>
+        <div class="js-search-trigger site-header__search-trigger"> <i class="fa fa-search" aria-hidden="true"></i></div>
         <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
         <div class="site-header__menu group">
             <nav class="main-navigation">

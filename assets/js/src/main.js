@@ -1,5 +1,5 @@
-import search from './modules/search';
+import Search from './modules/search';
 
 document.addEventListener('DOMContentLoaded', function () {
-	search();
+	const search = new Search();
 });
