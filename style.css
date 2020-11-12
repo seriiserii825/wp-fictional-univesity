@@ -1151,7 +1151,7 @@ body.login {
 	}
 }
 .page-banner__bg-image {
-	opacity: .33;
+	opacity: .7;
 	background-size: cover;
 	position: absolute;
 	top: 0;
@@ -1724,4 +1724,3 @@ body.admin-bar .search-overlay {
 	border-bottom: none;
 	margin-bottom: 0;
 }
-
