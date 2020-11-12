@@ -17,7 +17,7 @@ get_header();
 </div>
 <div class="container container--narrow page-section">
 	<?php
-	$today = date( 'Ymd' );
+	$today  = date( 'Ymd' );
 	$events = new WP_Query( [
 		'posts_per_page' => - 1,
 		'post_type'      => 'events',
