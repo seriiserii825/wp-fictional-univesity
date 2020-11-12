@@ -7,7 +7,8 @@ const autoprefixer = require("gulp-autoprefixer");
 const sourcemaps = require('gulp-sourcemaps');
 const plumber = require("gulp-plumber");
 const gcmq = require('gulp-group-css-media-queries');
-const wait = require('gulp-wait'), notify = require("gulp-notify");
+const wait = require('gulp-wait'),
+	notify = require("gulp-notify");
 const browserSync = require("browser-sync");
 
 // let siteUrl = 'http://wc-estore.host1670806.hostland.pro/';
@@ -57,22 +58,22 @@ let webpackConfig = {
 	},
 	watch: false,
 	module: {
-		rules: [
-			{
-				test: /\.m?js$/,
-				exclude: /(node_modules|bower_components)/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [['@babel/preset-env', {
+		rules: [{
+			test: /\.m?js$/,
+			exclude: /(node_modules|bower_components)/,
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: [
+						['@babel/preset-env', {
 							debug: true,
 							corejs: 3,
 							useBuiltIns: "usage"
-						}]]
-					}
+						}]
+					]
 				}
 			}
-		]
+		}]
 	},
 	mode: isDev ? 'development' : 'production',
 	devtool: isDev ? 'eval-source-map' : 'none',
@@ -104,7 +105,9 @@ gulp.task("scss", function () {
 		.pipe(gcmq())
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('assets/css/'))
-		.pipe(browserSync.reload({stream: true}));
+		.pipe(browserSync.reload({
+			stream: true
+		}));
 });
 
 gulp.task("watch", function () {
@@ -133,7 +136,8 @@ gulp.task('browser-sync', function () {
 	gulp.watch("**/*.js").on('change', browserSync.reload);
 });
 
-gulp.task('default', gulp.series('browser-sync'));
+// gulp.task('default', gulp.series('browser-sync'));
 // gulp.task('default', gulp.parallel('scss', 'watch', 'browser-sync'));
 // gulp.task('default', gulp.parallel('watch', 'browser-sync'));
+gulp.task('default', gulp.series('webpack', gulp.parallel('watch', 'browser-sync')));
 // gulp.task('default', gulp.series('webpack', 'scss', gulp.parallel('watch', 'browser-sync')));
