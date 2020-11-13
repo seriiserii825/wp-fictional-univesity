@@ -21,6 +21,10 @@ class Search {
 		this.searchField.addEventListener('keyup', this.typingLogic.bind(this));
 	}
 
+	// checkFocus(){
+	// 	document.querySelectorAll('input, textarea');
+	// }
+
 	typingLogic() {
 		if (this.searchField.value !== this.previeousValue) {
 			clearTimeout(this.typingTimer);
