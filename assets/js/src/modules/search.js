@@ -24,7 +24,6 @@ class Search {
 	// checkFocus(){
 	// 	document.querySelectorAll('input, textarea');
 	// }
-
 	typingLogic() {
 		if (this.searchField.value !== this.previeousValue) {
 			clearTimeout(this.typingTimer);
@@ -33,7 +32,7 @@ class Search {
 					this.resaultsDiv.innerHTML = '<div class="spinner-loader"></div>';
 					this.isSpinnerVisible = true;
 				}
-				this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+				this.typingTimer = setTimeout(this.getResults.bind(this), 600);
 			} else {
 				this.resaultsDiv.innerHTML = '';
 			}
@@ -41,8 +40,25 @@ class Search {
 		this.previeousValue = this.searchField.value;
 	}
 
+	showPosts(data) {
+		this.resaultsDiv.innerHTML = `
+			<h2 class="search-overlay__section-title">General information</h2>
+			<ul class="link-list min-list">
+		`;
+		data.forEach(item => {
+			this.resaultsDiv.innerHTML += `
+				<li><a href="${item.link}">${item.title.rendered}</a></li>
+		`;
+		});
+		this.resaultsDiv.innerHTML += `
+			<ul>
+		`;
+	}
+
 	getResults() {
-		this.resaultsDiv.innerHTML = 'Results here';
+		fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/posts?search=' + this.searchField.value)
+			.then(response => response.json())
+			.then(json => this.showPosts(json));
 		this.isSpinnerVisible = false;
 	}
 
