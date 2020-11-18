@@ -1,6 +1,7 @@
 class Search {
 	// 1. Describe
 	constructor() {
+		this.addSearchHtml();
 		this.openBtn = document.querySelector('.search-trigger');
 		this.closeBtn = document.querySelector('.search-overlay__close');
 		this.searchOverlay = document.querySelector('.search-overlay');
@@ -47,7 +48,11 @@ class Search {
 		`;
 		data.forEach(item => {
 			this.resaultsDiv.innerHTML += `
-				<li><a href="${item.link}">${item.title.rendered}</a></li>
+				<li>
+					<a href="${item.link}">
+						<h3>${item.title.rendered} ${item.type === 'post' ? `-<em>${item.authorName}</em>` : ''}</h3>
+					</a>
+				</li>
 		`;
 		});
 		this.resaultsDiv.innerHTML += `
@@ -59,6 +64,9 @@ class Search {
 		fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/posts?search=' + this.searchField.value)
 			.then(response => response.json())
 			.then(json => this.showPosts(json));
+		// fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/pages?search=' + this.searchField.value)
+		// 	.then(response => response.json())
+		// 	.then(json => this.showPosts(json));
 		this.isSpinnerVisible = false;
 	}
 
@@ -74,13 +82,35 @@ class Search {
 	openOverlay() {
 		document.body.classList.add('body-no-scroll');
 		this.searchOverlay.classList.add('search-overlay--active');
+		setTimeout(() => {
+			this.searchField.focus();
+		}, 320);
 		this.overlayIsVisible = true;
 	}
 
 	closeOverlay() {
+		this.searchField.value = '';
 		document.body.classList.remove('body-no-scroll');
 		this.searchOverlay.classList.remove('search-overlay--active');
 		this.overlayIsVisible = false;
+	}
+
+	addSearchHtml() {
+		const div = document.createElement('div');
+		div.classList.add('search-overlay');
+		div.innerHTML = `
+				<div class="search-overlay__top">
+					<div class="container">
+						<i class="fa fa-search search-overlay__icon"></i>
+						<input type="text" class="search-term" placeholder="What you are looking for?" id="search-term">
+						<i class="fa fa-window-close search-overlay__close"></i>
+					</div>
+				</div>
+				<div class="container">
+					<div id="search-overlay__results"></div>
+				</div>
+		`;
+		document.body.append(div);
 	}
 }
 export default Search;
