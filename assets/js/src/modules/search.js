@@ -64,12 +64,6 @@ class Search {
 		fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/posts?search=' + this.searchField.value)
 			.then(response => response.json())
 			.then(json => this.showPosts(json));
-		fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/pages?search=' + this.searchField.value)
-			.then(response => response.json())
-			.then(json => this.showPosts(json));
-		fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/professors?search=' + this.searchField.value)
-			.then(response => response.json())
-			.then(json => this.showPosts(json));
 		this.isSpinnerVisible = false;
 	}
 
