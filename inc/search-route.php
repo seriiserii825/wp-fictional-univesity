@@ -10,5 +10,15 @@ function universityRegistrySearch() {
 }
 add_action( 'rest_api_init', 'universityRegistrySearch' );
 function university_search_resaults() {
-	return 'Congratulations, you created a route';
+	$professors = new WP_Query([
+		'post_type' => 'professors'
+	]);
+
+	$professorsResaults = [];
+
+	while($professors->have_posts()) {
+		$professors-> the_post();
+
+	}
+	return $professorsResaults;
 }
