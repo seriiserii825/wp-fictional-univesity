@@ -117,7 +117,7 @@ class Search {
 				<div class="search-overlay__top">
 					<div class="container">
 						<i class="fa fa-search search-overlay__icon"></i>
-						<input type="text" class="search-term" placeholder="What you are looking for?" id="search-term">
+						<input type="text" class="search-term" placeholder="What you are looking for now...?" id="search-term">
 						<i class="fa fa-window-close search-overlay__close"></i>
 					</div>
 				</div>
