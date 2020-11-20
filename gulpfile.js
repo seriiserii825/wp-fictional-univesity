@@ -102,7 +102,6 @@ gulp.task("scss", function () {
 		.pipe(autoprefixer({
 			cascade: false
 		}))
-		.pipe(gcmq())
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('assets/css/'))
 		.pipe(browserSync.reload({

@@ -12,6 +12,7 @@ class Search {
 		this.typingTimer = null;
 		this.isSpinnerVisible = false;
 		this.previeousValue = null;
+		this.url_path = window.location.origin;
 	}
 
 	// 2. Events
@@ -43,25 +44,42 @@ class Search {
 
 	showPosts(data) {
 		this.resaultsDiv.innerHTML = `
-			<h2 class="search-overlay__section-title">General information</h2>
-			<ul class="link-list min-list">
-		`;
-		data.forEach(item => {
-			this.resaultsDiv.innerHTML += `
-				<li>
-					<a href="${item.link}">
-						<h3>${item.title.rendered} ${item.type === 'post' ? `-<em>${item.authorName}</em>` : ''}</h3>
-					</a>
-				</li>
-		`;
-		});
-		this.resaultsDiv.innerHTML += `
-			<ul>
+		<div class="row">
+			<div class="one-third">
+				<h2 class="search-overlay__section-title">General Information</h2>
+				${data.generalInfo.length ? '<ul class="link-list min-list">' : '<p>Nothing not founded</p>'}
+					${data.generalInfo.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+				${data.generalInfo.length ? '</ul>' : ''}
+			</div>
+			<div class="one-third">
+				<h2 class="search-overlay__section-title">Programs</h2>
+				${data.programs.length ? '<ul class="link-list min-list">' : `<p>Nothing not founded <a href="${this.url_path}/programs">View all programms</a> </p>`}
+					${data.programs.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`)}
+				${data.programs.length ? '</ul>' : ''}
+				<h2 class="search-overlay__section-title">Professors</h2>
+				${data.professors.length ? '<ul class="link-list min-list">' : `<p>Nothing not founded <a href="${this.url_path}/professors">View all programms</a> </p>`}
+					${data.professors.map(item => `
+						<li>
+							<a href="${item.permalink}">
+								<h3>${item.title}</h3>
+								<img width="200" height="150" src="${item.image}" alt="">
+							</a>
+						</li>
+					`)}
+				${data.programs.length ? '</ul>' : ''}
+			</div>
+			<div class="one-third">
+				<h2 class="search-overlay__section-title">Events</h2>
+				${data.events.length ? '<ul class="link-list min-list">' : `<p>Nothing not founded <a href="${this.url_path}/programs">View all events</a> </p>`}
+					${data.events.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`)}
+				${data.events.length ? '</ul>' : ''}
+			</div>
+		</div>
 		`;
 	}
 
 	getResults() {
-		fetch('http://wp-fictional-univesity.host1670806.hostland.pro/wp-json/wp/v2/posts?search=' + this.searchField.value)
+		fetch(this.url_path + '/wp-json/university/v1/search?term=' + this.searchField.value)
 			.then(response => response.json())
 			.then(json => this.showPosts(json));
 		this.isSpinnerVisible = false;
