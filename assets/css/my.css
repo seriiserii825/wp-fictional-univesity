@@ -67,8 +67,12 @@
   text-decoration: none;
 }
 
-.search .spinner-loader {
-  background-image: url("../i/static/preloader.gif");
+.search .spinner__loader {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url("../images/preload.gif");
+  background-size: cover;
 }
 
 /*# sourceMappingURL=my.css.map */

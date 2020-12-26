@@ -39,7 +39,7 @@ export default class ExportSidebar {
 			clearTimeout(this.typingTimer);
 			if (targetValue !== this.previousValue) {
 				if (!this.isSpinnerVisible) {
-					this.searchList.innerHTML = '<div class="spinner-loader"></div>';
+					this.searchList.innerHTML = '<div class="spinner__loader"></div>';
 					this.isSpinnerVisible = true;
 				}
 				this.typingTimer = setTimeout(this.getResults.bind(this), 300);
