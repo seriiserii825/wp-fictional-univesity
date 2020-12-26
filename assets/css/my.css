@@ -9,7 +9,10 @@
   background-color: #fff;
   z-index: 1000;
   box-shadow: 8px 0 28px rgba(0, 0, 0, 0.3);
-  transition: all .8s;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.8s;
 }
 
 .search.active {
@@ -17,7 +20,7 @@
   visibility: visible;
   pointer-events: visible;
   opacity: 1;
-  transition: all .8s;
+  transition: all 0.8s;
 }
 
 .search-wrap {
@@ -29,6 +32,7 @@
   padding: 0;
   width: 80%;
   height: 40px;
+  text-indent: 15px;
   color: black;
   border: 1px solid #ccc;
 }
@@ -46,7 +50,12 @@
 }
 
 .search__list {
+  display: none;
   list-style-type: none;
+}
+
+.search__list.active {
+  display: block;
 }
 
 .search__list-item {
@@ -56,6 +65,10 @@
 
 .search__list-link {
   text-decoration: none;
+}
+
+.search .spinner-loader {
+  background-image: url("../i/static/preloader.gif");
 }
 
 /*# sourceMappingURL=my.css.map */

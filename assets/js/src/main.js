@@ -4,5 +4,4 @@ import ExportSidebar from "./modules/search-sidebar";
 document.addEventListener("DOMContentLoaded", function () {
   // const search = new Search();
   new ExportSidebar();
-  console.log("one");
 });
