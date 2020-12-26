@@ -10,47 +10,7 @@ const gcmq = require('gulp-group-css-media-queries');
 const wait = require('gulp-wait'),
 	notify = require("gulp-notify");
 const browserSync = require("browser-sync");
-
-// let siteUrl = 'http://wc-estore.host1670806.hostland.pro/';
-// let siteDir = '../wc-estore/';
-
-// let siteUrl = 'http://gadda.cf/';
-// let siteDir = '../bs-gadda/';
-
-// let siteUrl = 'http://gadda.cf/';
-// let siteDir = '../vue/';
-
-// let siteDir = '../gsap/';
-// let siteDir = '../javascript-petricenco/';
-
-// let siteUrl = 'http://javascript-petricenco.host1670806.hostland.pro/';
-// let siteDir = '../javascript-petricenco/';
-
 let siteUrl = 'http://wp-fictional-univesity.host1670806.hostland.pro/';
-
-// const siteDir = '../bs-bunavestire/';
-// const siteUrl = 'http://wp-bunavestire.host1670806.hostland.pro/';
-
-//let siteDir = '../js-movies/';
-
-// let siteUrl = 'http://dev.ilcaffecheaspettavi.it/';
-// let siteDir = '../bs-alytaly/';
-
-// let siteUrl = 'http://bassoservizi.cf/';
-// let siteDir = '../bs-bassoservizi/';
-
-//let siteUrl = 'http://consorziostorm.cf/';
-//let siteDir = '../bs-consorzio/';
-
-// let siteUrl = 'https://myrewind.it/';
-// let siteDir = '../bs-rewind/';
-
-// let siteUrl = 'http://bertan.ml/';
-// let siteDir = '../bs-bertan/';
-
-//let siteUrl = 'http://proseccoborgoluce.cf//';
-//let siteDir = '../bs-proseccobordoluce/';
-
 let isDev = true;
 let webpackConfig = {
 	output: {
@@ -120,23 +80,11 @@ gulp.task('browser-sync', function () {
 			target: siteUrl,
 			ws: true
 		},
-		reloadDelay: 1500
+		reloadDelay: 2000
 	});
-
-	// browserSync.init({
-	// 	server: {
-	// 		baseDir: siteDir
-	// 	},
-	// 	notify: true
-	// });
 	gulp.watch("**/*.html").on('change', browserSync.reload);
 	gulp.watch("**/*.php").on('change', browserSync.reload);
 	gulp.watch("**/*.css").on('change', browserSync.reload);
 	gulp.watch("**/*.js").on('change', browserSync.reload);
 });
-
-// gulp.task('default', gulp.series('browser-sync'));
-// gulp.task('default', gulp.parallel('scss', 'watch', 'browser-sync'));
-// gulp.task('default', gulp.parallel('watch', 'browser-sync'));
 gulp.task('default', gulp.series('webpack', gulp.parallel('watch', 'browser-sync')));
-// gulp.task('default', gulp.series('webpack', 'scss', gulp.parallel('watch', 'browser-sync')));

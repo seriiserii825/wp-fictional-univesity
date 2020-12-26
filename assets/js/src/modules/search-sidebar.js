@@ -8,10 +8,9 @@ export default class ExportSidebar {
   events() {
     this.searchOpenBtn.addEventListener("click", this.openSearch.bind(this));
     document.addEventListener("click", (e) => {
-      const isClickInside = this.searchHtml.contains(e.target);
-      if (!isClickInside) {
-        console.log("close bind");
-        this.closeSearch.bind(this);
+      const target = e.target;
+      if (!target.closest('.search.active') && !target.classList.contains('fa-search')) {
+        this.closeSearch();
       }
     });
   }
@@ -21,7 +20,6 @@ export default class ExportSidebar {
   }
 
   closeSearch() {
-    console.log("close search");
     this.searchHtml.classList.remove("active");
   }
 }
